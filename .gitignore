@@ -130,5 +130,9 @@ dmypy.json
 
 # data path
 data/
+
 # mmcls
 work_dirs/
+
+# PyCharm
+.idea/
