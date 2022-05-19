@@ -54,6 +54,10 @@ def parse_args():
         type=int,
         default=None,
         help='num of ipu replicas to use')
+    parser.add_argument(
+        '--use-mps',
+        action='store_true',
+        help='whether to use mps on macos')
     parser.add_argument('--seed', type=int, default=None, help='random seed')
     parser.add_argument(
         '--diff-seed',
@@ -123,6 +127,9 @@ def main():
                       'in `gpu_ids` now.')
     if args.gpus is None and args.gpu_ids is None:
         cfg.gpu_ids = [args.gpu_id]
+
+    if args.use_mps:
+        args.device = 'mps'
 
     if args.ipu_replicas is not None:
         cfg.ipu_replicas = args.ipu_replicas

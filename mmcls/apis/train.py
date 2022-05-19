@@ -143,6 +143,8 @@ def train_model(model,
             model = model.cpu()
         elif device == 'ipu':
             model = model.cpu()
+        elif device == 'mps':
+            model.to(device='mps:0')
         else:
             model = MMDataParallel(model, device_ids=cfg.gpu_ids)
             if not model.device_ids:
